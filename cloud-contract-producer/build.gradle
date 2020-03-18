@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'org.springframework.cloud.contract' version '2.2.2.RELEASE'
+	id 'maven-publish'
 }
 
 group = 'com.bzb.spring.cloud'
@@ -22,6 +23,7 @@ dependencies {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -29,6 +31,10 @@ dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR3"
 	}
+}
+
+contracts {
+	baseClassForTests("com.bzb.cloud.contract.producer.BooksApiBaseTest")
 }
 
 test {
